@@ -1,0 +1,21 @@
+The following CSS code snippet demonstrates an uncommon error related to specificity and the cascade:
+
+```css
+div {
+  color: blue;
+}
+
+.container div {
+  color: red; /* This rule is intended to override the div rule */
+}
+
+#specific-div {
+  color: green; /* This rule should override the previous two */
+}
+
+.container #specific-div { /* Incorrectly trying to increase specificity */
+  color: purple; /* This rule will NOT override #specific-div due to specificity rules */
+}
+```
+
+The unexpected behavior is that the `#specific-div` rule's `color: green` is not overridden by `.container #specific-div`'s `color: purple`. Although the second rule appears more specific, the `id` selector in `#specific-div` has higher specificity than a combination of class and ID selectors. This showcases a misunderstanding of how CSS specificity works, especially when dealing with combinations of class and ID selectors.
